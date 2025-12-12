@@ -1,0 +1,948 @@
+/* ========================================
+   RollQuest - Main Stylesheet
+   Color Palette: Teal gradient theme
+   ======================================== */
+
+:root {
+    /* Primary Teal Colors */
+    --primary-dark: #1a4a4f;
+    --primary-main: #247a7a;
+    --primary-light: #35a3a3;
+    --primary-lighter: #4fc3c3;
+    
+    /* Background Gradients */
+    --bg-gradient-start: #0d3d3d;
+    --bg-gradient-mid: #1a5a5a;
+    --bg-gradient-end: #247a7a;
+    
+    /* Accent Colors */
+    --accent-gold: #d4af37;
+    --accent-silver: #c0c0c0;
+    --accent-cream: #f5f5dc;
+    
+    /* Text Colors */
+    --text-light: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --text-dark: #1a1a1a;
+    
+    /* Status Colors */
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --info: #17a2b8;
+    
+    /* Card/Panel Colors */
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --card-bg-solid: rgba(26, 74, 79, 0.95);
+    --card-border: rgba(255, 255, 255, 0.2);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --shadow-glow: 0 0 20px rgba(79, 195, 195, 0.3);
+}
+
+/* ========================================
+   Global Styles
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+    min-height: 100vh;
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* Title Font */
+.title-font {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ========================================
+   Navigation
+   ======================================== */
+
+.navbar {
+    background: linear-gradient(180deg, rgba(13, 61, 61, 0.98) 0%, rgba(26, 74, 79, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 0;
+    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-light) !important;
+    letter-spacing: 1px;
+}
+
+.navbar-brand i {
+    color: var(--primary-lighter);
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    margin: 0 0.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-light) !important;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+    background: var(--primary-light);
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+
+.footer {
+    background: linear-gradient(180deg, rgba(26, 74, 79, 0.95) 0%, rgba(13, 61, 61, 0.98) 100%);
+    padding: 1rem 0;
+    border-top: 1px solid var(--card-border);
+    position: relative;
+    margin-top: auto;
+}
+
+.footer p {
+    color: var(--primary-lighter);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* ========================================
+   Home Page
+   ======================================== */
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(79, 195, 195, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(79, 195, 195, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--text-light);
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.5rem;
+    letter-spacing: 3px;
+}
+
+.hero-title-underline {
+    width: 300px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-lighter), transparent);
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--primary-lighter);
+    font-style: italic;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+.btn-start-game {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-main) 100%);
+    color: var(--text-light);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 3rem;
+    border: 2px solid var(--primary-lighter);
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    letter-spacing: 2px;
+}
+
+.btn-start-game:hover {
+    background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-light) 100%);
+    color: var(--text-light);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(79, 195, 195, 0.5);
+}
+
+.btn-start-game i {
+    font-size: 1.4rem;
+}
+
+/* Floating Dice Animation */
+.floating-dice {
+    position: absolute;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-dice:nth-child(1) {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-dice:nth-child(2) {
+    top: 20%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.floating-dice:nth-child(3) {
+    bottom: 25%;
+    left: 8%;
+    animation-delay: 4s;
+}
+
+.floating-dice:nth-child(4) {
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+/* ========================================
+   Cards & Panels
+   ======================================== */
+
+.game-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.game-card:hover {
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.game-card-header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-lighter);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.game-card-header i {
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-light) 100%);
+    border: none;
+    color: var(--text-light);
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline-custom {
+    background: transparent;
+    border: 2px solid var(--primary-lighter);
+    color: var(--primary-lighter);
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-custom:hover {
+    background: var(--primary-lighter);
+    color: var(--primary-dark);
+}
+
+.btn-danger-custom {
+    background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+    border: none;
+    color: var(--text-light);
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger-custom:hover {
+    background: linear-gradient(135deg, #e74c3c 0%, #ff6b6b 100%);
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   Form Controls
+   ======================================== */
+
+.form-control-custom {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--card-border);
+    color: var(--text-light);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-control-custom:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-lighter);
+    box-shadow: 0 0 0 3px rgba(79, 195, 195, 0.2);
+    color: var(--text-light);
+    outline: none;
+}
+
+.form-control-custom::placeholder {
+    color: var(--text-muted);
+}
+
+.form-label-custom {
+    color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Custom Range Slider */
+.form-range-custom {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    outline: none;
+}
+
+.form-range-custom::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-lighter);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.form-range-custom::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--text-light);
+}
+
+/* ========================================
+   Dice Styles
+   ======================================== */
+
+.dice-container {
+    perspective: 1000px;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.dice {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease;
+}
+
+.dice.rolling {
+    animation: roll 0.5s ease-out;
+}
+
+@keyframes roll {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    25% { transform: rotateX(180deg) rotateY(90deg) rotateZ(45deg); }
+    50% { transform: rotateX(360deg) rotateY(180deg) rotateZ(90deg); }
+    75% { transform: rotateX(540deg) rotateY(270deg) rotateZ(135deg); }
+    100% { transform: rotateX(720deg) rotateY(360deg) rotateZ(180deg); }
+}
+
+.dice-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+    border: 3px solid #aaa;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-dark);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Dice Face Buttons */
+.dice-face-btn {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    border: 3px solid var(--card-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.dice-face-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.dice-face-btn.selected {
+    border-color: var(--primary-lighter);
+    box-shadow: 0 0 15px rgba(79, 195, 195, 0.5);
+    transform: scale(1.1);
+}
+
+.dice-face-btn .dot {
+    width: 10px;
+    height: 10px;
+    background: var(--primary-dark);
+    border-radius: 50%;
+    position: absolute;
+}
+
+/* Dot positions for each face */
+.dice-face-btn[data-face="1"] .dot { }
+.dice-face-btn[data-face="2"] .dot:nth-child(1) { top: 15px; left: 15px; }
+.dice-face-btn[data-face="2"] .dot:nth-child(2) { bottom: 15px; right: 15px; }
+.dice-face-btn[data-face="3"] .dot:nth-child(1) { top: 15px; left: 15px; }
+.dice-face-btn[data-face="3"] .dot:nth-child(2) { }
+.dice-face-btn[data-face="3"] .dot:nth-child(3) { bottom: 15px; right: 15px; }
+.dice-face-btn[data-face="4"] .dot:nth-child(1) { top: 15px; left: 15px; }
+.dice-face-btn[data-face="4"] .dot:nth-child(2) { top: 15px; right: 15px; }
+.dice-face-btn[data-face="4"] .dot:nth-child(3) { bottom: 15px; left: 15px; }
+.dice-face-btn[data-face="4"] .dot:nth-child(4) { bottom: 15px; right: 15px; }
+.dice-face-btn[data-face="5"] .dot:nth-child(1) { top: 15px; left: 15px; }
+.dice-face-btn[data-face="5"] .dot:nth-child(2) { top: 15px; right: 15px; }
+.dice-face-btn[data-face="5"] .dot:nth-child(3) { }
+.dice-face-btn[data-face="5"] .dot:nth-child(4) { bottom: 15px; left: 15px; }
+.dice-face-btn[data-face="5"] .dot:nth-child(5) { bottom: 15px; right: 15px; }
+.dice-face-btn[data-face="6"] .dot:nth-child(1) { top: 15px; left: 15px; }
+.dice-face-btn[data-face="6"] .dot:nth-child(2) { top: 15px; right: 15px; }
+.dice-face-btn[data-face="6"] .dot:nth-child(3) { top: 50%; left: 15px; transform: translateY(-50%); }
+.dice-face-btn[data-face="6"] .dot:nth-child(4) { top: 50%; right: 15px; transform: translateY(-50%); }
+.dice-face-btn[data-face="6"] .dot:nth-child(5) { bottom: 15px; left: 15px; }
+.dice-face-btn[data-face="6"] .dot:nth-child(6) { bottom: 15px; right: 15px; }
+
+/* ========================================
+   Game Page Layout
+   ======================================== */
+
+.game-page {
+    padding-top: 80px;
+    min-height: 100vh;
+    padding-bottom: 2rem;
+}
+
+.game-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+    .game-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.game-center {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Dice Animation Panel */
+.dice-panel {
+    background: linear-gradient(135deg, rgba(13, 61, 61, 0.9) 0%, rgba(26, 74, 79, 0.9) 100%);
+    border: 2px solid var(--card-border);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg), inset 0 0 50px rgba(0,0,0,0.2);
+}
+
+/* Betting Panel */
+.betting-panel {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.bet-faces {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.bet-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-roll {
+    background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-light) 100%);
+    color: var(--text-light);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-roll:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.btn-roll:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   Statistics & Info Displays
+   ======================================== */
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.stat-value.positive {
+    color: var(--success);
+}
+
+.stat-value.negative {
+    color: var(--danger);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* History List */
+.history-list {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: var(--primary-lighter);
+    border-radius: 3px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    background: rgba(255,255,255,0.05);
+}
+
+.history-item.win {
+    border-left: 3px solid var(--success);
+}
+
+.history-item.loss {
+    border-left: 3px solid var(--danger);
+}
+
+/* ========================================
+   Probability Sliders
+   ======================================== */
+
+.prob-slider-group {
+    margin-bottom: 1rem;
+}
+
+.prob-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.prob-face {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.prob-value {
+    font-weight: 700;
+    color: var(--primary-lighter);
+}
+
+/* ========================================
+   Simulation Page
+   ======================================== */
+
+.simulation-page {
+    padding-top: 100px;
+    padding-bottom: 3rem;
+}
+
+.simulation-controls {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.simulation-results {
+    margin-top: 2rem;
+}
+
+.chart-container {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    min-height: 400px;
+}
+
+/* ========================================
+   Analysis Page
+   ======================================== */
+
+.analysis-page {
+    padding-top: 100px;
+    padding-bottom: 3rem;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.stats-table th,
+.stats-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.stats-table th {
+    background: rgba(255,255,255,0.1);
+    font-weight: 600;
+    color: var(--primary-lighter);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.stats-table tr:hover td {
+    background: rgba(255,255,255,0.05);
+}
+
+/* ========================================
+   About Page
+   ======================================== */
+
+.about-page {
+    padding-top: 100px;
+    padding-bottom: 3rem;
+}
+
+.about-section {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.about-section h2 {
+    color: var(--primary-lighter);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.team-member {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.team-member:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+}
+
+.team-member-avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-light) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 2rem;
+    color: var(--text-light);
+}
+
+.formula-box {
+    background: rgba(0,0,0,0.2);
+    border-left: 4px solid var(--primary-lighter);
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.text-teal {
+    color: var(--primary-lighter);
+}
+
+.text-success-custom {
+    color: var(--success);
+}
+
+.text-danger-custom {
+    color: var(--danger);
+}
+
+.bg-glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+}
+
+.glow-effect {
+    box-shadow: var(--shadow-glow);
+}
+
+/* Loading Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255,255,255,0.2);
+    border-top-color: var(--primary-lighter);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Result Flash */
+.result-flash {
+    animation: flash 0.5s ease;
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Win/Loss Indicator */
+.result-indicator {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.result-indicator.win {
+    background: rgba(40, 167, 69, 0.2);
+    color: var(--success);
+    border: 2px solid var(--success);
+}
+
+.result-indicator.loss {
+    background: rgba(220, 53, 69, 0.2);
+    color: var(--danger);
+    border: 2px solid var(--danger);
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .btn-start-game {
+        font-size: 1rem;
+        padding: 0.8rem 2rem;
+    }
+    
+    .game-layout {
+        padding: 1rem;
+    }
+    
+    .dice-panel {
+        padding: 2rem 1rem;
+    }
+    
+    .dice-face-btn {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* ========================================
+   Modal Styles
+   ======================================== */
+
+.modal-content {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 100%);
+    border: 1px solid var(--card-border);
+    color: var(--text-light);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--card-border);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--card-border);
+}
+
+.modal-title {
+    color: var(--primary-lighter);
+    font-weight: 700;
+}
+
+.btn-close {
+    filter: invert(1);
+}
