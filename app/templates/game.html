@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Play Game{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dice.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="game-page">
+    <div class="game-layout">
+        <!-- Left Panel -->
+        <div class="game-left">
+            <!-- Player Info -->
+            <div class="game-card mb-3">
+                <div class="game-card-header">
+                    <i class="bi bi-person-fill"></i> Player
+                </div>
+                <div class="player-info">
+                    <input type="text" id="playerName" class="form-control form-control-custom mb-2" 
+                           value="{{ game.player_name }}" placeholder="Enter your name" maxlength="20">
+                    <button class="btn btn-outline-custom btn-sm w-100" onclick="setPlayerName()">
+                        <i class="bi bi-check-lg"></i> Save Name
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Balance -->
+            <div class="game-card mb-3">
+                <div class="game-card-header">
+                    <i class="bi bi-wallet2"></i> Balance
+                </div>
+                <div class="text-center">
+                    <div class="stat-value" id="balanceDisplay">${{ "%.2f"|format(game.balance) }}</div>
+                    <div class="stat-label">Current Balance</div>
+                    <hr style="border-color: var(--card-border); margin: 1rem 0;">
+                    <div class="stat-value {% if game.profit >= 0 %}positive{% else %}negative{% endif %}" id="profitDisplay">
+                        {{ "+" if game.profit >= 0 else "" }}${{ "%.2f"|format(game.profit) }}
+                    </div>
+                    <div class="stat-label">Profit/Loss</div>
+                </div>
+                <div class="mt-3">
+                    <div class="input-group">
+                        <input type="number" id="addFundsAmount" class="form-control form-control-custom" 
+                               placeholder="Amount" min="1" max="100000" value="100">
+                        <button class="btn btn-primary-custom" onclick="addFunds()">
+                            <i class="bi bi-plus-lg"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Mode -->
+            <div class="game-card mb-3">
+                <div class="game-card-header">
+                    <i class="bi bi-sliders"></i> Game Mode
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="gameMode" id="modeFair" value="fair" checked>
+                    <label class="form-check-label" for="modeFair">
+                        <strong>Fair Game</strong>
+                        <small class="d-block text-muted">Equal probability (16.67% each)</small>
+                    </label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="gameMode" id="modeTweaked" value="tweaked">
+                    <label class="form-check-label" for="modeTweaked">
+                        <strong>Tweaked Game</strong>
+                        <small class="d-block text-muted">Customize probabilities</small>
+                    </label>
+                </div>
+                
+                <!-- Probability Sliders (hidden by default) -->
+                <div id="probabilitySliders" style="display: none; margin-top: 1rem;">
+                    <small class="text-muted mb-2 d-block">Adjust probabilities (auto-normalizes)</small>
+                    {% for face in range(1, 7) %}
+                    <div class="prob-slider-group">
+                        <div class="prob-slider-header">
+                            <span class="prob-face">
+                                <i class="bi bi-dice-{{ face }}-fill"></i> Face {{ face }}
+                            </span>
+                            <span class="prob-value" id="probValue{{ face }}">16.67%</span>
+                        </div>
+                        <input type="range" class="form-range form-range-custom prob-slider" 
+                               id="probSlider{{ face }}" data-face="{{ face }}"
+                               min="0" max="100" value="16.67" step="0.01">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Center Panel -->
+        <div class="game-center">
+            <!-- Dice Animation Panel -->
+            <div class="dice-panel">
+                <div id="diceResult" class="dice-result-display">
+                    <div class="dice-3d" id="dice3D">
+                        <div class="dice-face-3d" id="diceResultFace">
+                            <span class="dice-number">?</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="resultIndicator" class="result-indicator" style="display: none;"></div>
+            </div>
+            
+            <!-- Betting Panel -->
+            <div class="betting-panel">
+                <h5 class="text-center mb-3 text-teal">Select a Face to Bet On</h5>
+                <div class="bet-faces">
+                    {% for face in range(1, 7) %}
+                    <button class="dice-face-btn {% if face == 1 %}selected{% endif %}" 
+                            data-face="{{ face }}" onclick="selectFace({{ face }})">
+                        {% for dot in range(face) %}
+                        <span class="dot"></span>
+                        {% endfor %}
+                    </button>
+                    {% endfor %}
+                </div>
+                
+                <div class="bet-controls">
+                    <div class="bet-amount-group">
+                        <label class="form-label-custom">Bet Amount</label>
+                        <div class="input-group">
+                            <span class="input-group-text" style="background: var(--card-bg); border-color: var(--card-border); color: var(--text-light);">$</span>
+                            <input type="number" id="betAmount" class="form-control form-control-custom" 
+                                   value="10" min="1" max="10000">
+                        </div>
+                    </div>
+                    
+                    <button class="btn-roll" id="rollBtn" onclick="rollDice()">
+                        <i class="bi bi-dice-5-fill me-2"></i> ROLL
+                    </button>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <small class="text-muted">Win pays <strong class="text-teal">6x</strong> your bet!</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel -->
+        <div class="game-right">
+            <!-- Quick Statistics -->
+            <div class="game-card mb-3">
+                <div class="game-card-header">
+                    <i class="bi bi-bar-chart-fill"></i> Quick Statistics
+                </div>
+                <div class="row text-center">
+                    <div class="col-6 mb-3">
+                        <div class="stat-value" id="totalRounds">{{ game.total_rounds }}</div>
+                        <div class="stat-label">Rounds</div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="stat-value text-teal" id="winRate">{{ "%.1f"|format(game.win_rate) }}%</div>
+                        <div class="stat-label">Win Rate</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-value positive" id="winsCount">{{ game.wins }}</div>
+                        <div class="stat-label">Wins</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-value negative" id="lossesCount">{{ game.losses }}</div>
+                        <div class="stat-label">Losses</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- History -->
+            <div class="game-card mb-3">
+                <div class="game-card-header">
+                    <i class="bi bi-clock-history"></i> Recent History
+                </div>
+                <div class="history-list" id="historyList">
+                    {% if game.history %}
+                        {% for entry in game.history[-10:]|reverse %}
+                        <div class="history-item {{ 'win' if entry.won else 'loss' }}">
+                            <span>R{{ entry.round }}: Bet {{ entry.bet_face }} → Got {{ entry.result }}</span>
+                            <span class="{{ 'text-success-custom' if entry.won else 'text-danger-custom' }}">
+                                {{ 'WIN' if entry.won else 'LOSS' }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted text-center small">No games played yet</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- How to Play -->
+            <div class="game-card mb-3">
+                <div class="game-card-header">
+                    <i class="bi bi-question-circle-fill"></i> How to Play
+                </div>
+                <ol class="small mb-0" style="padding-left: 1.2rem; color: var(--text-muted);">
+                    <li class="mb-1">Choose Fair or Tweaked mode</li>
+                    <li class="mb-1">Select a dice face to bet on</li>
+                    <li class="mb-1">Enter your bet amount</li>
+                    <li class="mb-1">Click ROLL and hope for a match!</li>
+                    <li>Win <strong class="text-teal">6x</strong> your bet on correct guess</li>
+                </ol>
+            </div>
+            
+            <!-- Reset Game -->
+            <div class="game-card">
+                <button class="btn btn-danger-custom w-100" onclick="resetGame()">
+                    <i class="bi bi-arrow-counterclockwise me-2"></i> Reset Game
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Funds Modal -->
+<div class="modal fade" id="addFundsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-wallet2 me-2"></i>Add Funds</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>This is a simulation. You can add virtual funds to continue playing.</p>
+                <div class="mb-3">
+                    <label class="form-label-custom">Amount to Add</label>
+                    <input type="number" id="modalFundsAmount" class="form-control form-control-custom" 
+                           value="1000" min="1" max="100000">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-custom" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary-custom" onclick="confirmAddFunds()">Add Funds</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dice.js') }}"></script>
+<script src="{{ url_for('static', filename='js/game.js') }}"></script>
+{% endblock %}

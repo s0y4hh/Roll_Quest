@@ -1,0 +1,247 @@
+/* ========================================
+   Dice Animation Styles
+   ======================================== */
+
+/* 3D Dice Container */
+.dice-result-display {
+    perspective: 600px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.dice-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.dice-3d.rolling {
+    animation: diceRoll 0.8s ease-out;
+}
+
+@keyframes diceRoll {
+    0% { 
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); 
+    }
+    20% { 
+        transform: rotateX(180deg) rotateY(90deg) rotateZ(45deg) scale(1.1); 
+    }
+    40% { 
+        transform: rotateX(360deg) rotateY(180deg) rotateZ(90deg) scale(1.05); 
+    }
+    60% { 
+        transform: rotateX(540deg) rotateY(270deg) rotateZ(135deg) scale(1.1); 
+    }
+    80% { 
+        transform: rotateX(720deg) rotateY(360deg) rotateZ(170deg) scale(1.02); 
+    }
+    100% { 
+        transform: rotateX(720deg) rotateY(360deg) rotateZ(180deg) scale(1); 
+    }
+}
+
+/* Dice Face Display */
+.dice-face-3d {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #ffffff 0%, #e8e8e8 50%, #d0d0d0 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 2px 10px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border: 3px solid #b0b0b0;
+    position: relative;
+    overflow: hidden;
+}
+
+.dice-face-3d::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.3) 45%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.3) 55%,
+        transparent 60%
+    );
+    transform: rotate(-45deg);
+    pointer-events: none;
+}
+
+/* Dice Number Display */
+.dice-number {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #1a4a4f;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Dice with Dots */
+.dice-dots {
+    display: grid;
+    grid-template-areas: 
+        "a . b"
+        "c d e"
+        "f . g";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    gap: 5px;
+}
+
+.dice-dots .die-dot {
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle at 30% 30%, #2a6a6f 0%, #1a4a4f 50%, #0d3030 100%);
+    border-radius: 50%;
+    box-shadow: 
+        inset -2px -2px 4px rgba(255, 255, 255, 0.2),
+        inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Dot positioning for different faces */
+.dice-face-3d[data-value="1"] .dice-dots .die-dot:nth-child(1) { grid-area: d; justify-self: center; align-self: center; }
+
+.dice-face-3d[data-value="2"] .dice-dots .die-dot:nth-child(1) { grid-area: a; }
+.dice-face-3d[data-value="2"] .dice-dots .die-dot:nth-child(2) { grid-area: g; justify-self: end; align-self: end; }
+
+.dice-face-3d[data-value="3"] .dice-dots .die-dot:nth-child(1) { grid-area: a; }
+.dice-face-3d[data-value="3"] .dice-dots .die-dot:nth-child(2) { grid-area: d; justify-self: center; align-self: center; }
+.dice-face-3d[data-value="3"] .dice-dots .die-dot:nth-child(3) { grid-area: g; justify-self: end; align-self: end; }
+
+.dice-face-3d[data-value="4"] .dice-dots .die-dot:nth-child(1) { grid-area: a; }
+.dice-face-3d[data-value="4"] .dice-dots .die-dot:nth-child(2) { grid-area: b; justify-self: end; }
+.dice-face-3d[data-value="4"] .dice-dots .die-dot:nth-child(3) { grid-area: f; align-self: end; }
+.dice-face-3d[data-value="4"] .dice-dots .die-dot:nth-child(4) { grid-area: g; justify-self: end; align-self: end; }
+
+.dice-face-3d[data-value="5"] .dice-dots .die-dot:nth-child(1) { grid-area: a; }
+.dice-face-3d[data-value="5"] .dice-dots .die-dot:nth-child(2) { grid-area: b; justify-self: end; }
+.dice-face-3d[data-value="5"] .dice-dots .die-dot:nth-child(3) { grid-area: d; justify-self: center; align-self: center; }
+.dice-face-3d[data-value="5"] .dice-dots .die-dot:nth-child(4) { grid-area: f; align-self: end; }
+.dice-face-3d[data-value="5"] .dice-dots .die-dot:nth-child(5) { grid-area: g; justify-self: end; align-self: end; }
+
+.dice-face-3d[data-value="6"] .dice-dots .die-dot:nth-child(1) { grid-area: a; }
+.dice-face-3d[data-value="6"] .dice-dots .die-dot:nth-child(2) { grid-area: b; justify-self: end; }
+.dice-face-3d[data-value="6"] .dice-dots .die-dot:nth-child(3) { grid-area: c; align-self: center; }
+.dice-face-3d[data-value="6"] .dice-dots .die-dot:nth-child(4) { grid-area: e; justify-self: end; align-self: center; }
+.dice-face-3d[data-value="6"] .dice-dots .die-dot:nth-child(5) { grid-area: f; align-self: end; }
+.dice-face-3d[data-value="6"] .dice-dots .die-dot:nth-child(6) { grid-area: g; justify-self: end; align-self: end; }
+
+/* Win Effect */
+.dice-3d.win-effect {
+    animation: winPulse 0.5s ease;
+}
+
+@keyframes winPulse {
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(40, 167, 69, 0));
+    }
+    50% { 
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 30px rgba(40, 167, 69, 0.8));
+    }
+}
+
+/* Loss Effect */
+.dice-3d.loss-effect {
+    animation: lossShake 0.5s ease;
+}
+
+@keyframes lossShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+}
+
+/* Dice Face Selection Buttons (improved) */
+.dice-face-btn {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(145deg, #ffffff 0%, #e8e8e8 50%, #d0d0d0 100%);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    display: grid;
+    grid-template-areas: 
+        "a . b"
+        "c d e"
+        "f . g";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.dice-face-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.dice-face-btn.selected {
+    border-color: #4fc3c3;
+    box-shadow: 
+        0 0 20px rgba(79, 195, 195, 0.6),
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0 1px 3px rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.dice-face-btn .dot {
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle at 30% 30%, #2a6a6f 0%, #1a4a4f 50%, #0d3030 100%);
+    border-radius: 50%;
+    box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Position dots for face buttons */
+.dice-face-btn[data-face="1"] .dot { grid-area: d; justify-self: center; align-self: center; }
+
+.dice-face-btn[data-face="2"] .dot:nth-child(1) { grid-area: a; }
+.dice-face-btn[data-face="2"] .dot:nth-child(2) { grid-area: g; justify-self: end; align-self: end; }
+
+.dice-face-btn[data-face="3"] .dot:nth-child(1) { grid-area: a; }
+.dice-face-btn[data-face="3"] .dot:nth-child(2) { grid-area: d; justify-self: center; align-self: center; }
+.dice-face-btn[data-face="3"] .dot:nth-child(3) { grid-area: g; justify-self: end; align-self: end; }
+
+.dice-face-btn[data-face="4"] .dot:nth-child(1) { grid-area: a; }
+.dice-face-btn[data-face="4"] .dot:nth-child(2) { grid-area: b; justify-self: end; }
+.dice-face-btn[data-face="4"] .dot:nth-child(3) { grid-area: f; align-self: end; }
+.dice-face-btn[data-face="4"] .dot:nth-child(4) { grid-area: g; justify-self: end; align-self: end; }
+
+.dice-face-btn[data-face="5"] .dot:nth-child(1) { grid-area: a; }
+.dice-face-btn[data-face="5"] .dot:nth-child(2) { grid-area: b; justify-self: end; }
+.dice-face-btn[data-face="5"] .dot:nth-child(3) { grid-area: d; justify-self: center; align-self: center; }
+.dice-face-btn[data-face="5"] .dot:nth-child(4) { grid-area: f; align-self: end; }
+.dice-face-btn[data-face="5"] .dot:nth-child(5) { grid-area: g; justify-self: end; align-self: end; }
+
+.dice-face-btn[data-face="6"] .dot:nth-child(1) { grid-area: a; }
+.dice-face-btn[data-face="6"] .dot:nth-child(2) { grid-area: b; justify-self: end; }
+.dice-face-btn[data-face="6"] .dot:nth-child(3) { grid-area: c; align-self: center; }
+.dice-face-btn[data-face="6"] .dot:nth-child(4) { grid-area: e; justify-self: end; align-self: center; }
+.dice-face-btn[data-face="6"] .dot:nth-child(5) { grid-area: f; align-self: end; }
+.dice-face-btn[data-face="6"] .dot:nth-child(6) { grid-area: g; justify-self: end; align-self: end; }
