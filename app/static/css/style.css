@@ -61,6 +61,33 @@ body {
     overflow-x: hidden;
 }
 
+/* Override Bootstrap text colors for dark theme */
+.text-muted {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.text-secondary {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.small, small {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Form labels and general text */
+label, .form-label, .form-check-label {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Card text overrides */
+.card-text, .card-body p, p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-light);
+}
+
 /* Title Font */
 .title-font {
     font-family: 'Playfair Display', serif;
@@ -364,6 +391,35 @@ body {
 
 .form-control-custom::placeholder {
     color: var(--text-muted);
+}
+
+/* Override Bootstrap form controls for dark theme */
+.form-control, .form-select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--card-border);
+    color: var(--text-light) !important;
+}
+
+.form-control:focus, .form-select:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-lighter);
+    color: var(--text-light) !important;
+    box-shadow: 0 0 0 3px rgba(79, 195, 195, 0.2);
+}
+
+.form-select option {
+    background: var(--primary-dark);
+    color: var(--text-light);
+}
+
+.form-check-input {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--card-border);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-lighter);
+    border-color: var(--primary-lighter);
 }
 
 .form-label-custom {
