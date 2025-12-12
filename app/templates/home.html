@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <!-- Floating Dice Decorations -->
+    <div class="floating-dice" style="top: 15%; left: 8%;">
+        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="80" height="80" rx="15" fill="rgba(200,200,200,0.8)" stroke="rgba(150,150,150,0.5)" stroke-width="3"/>
+            <circle cx="30" cy="30" r="8" fill="#1a4a4f"/>
+            <circle cx="70" cy="70" r="8" fill="#1a4a4f"/>
+        </svg>
+    </div>
+    <div class="floating-dice" style="top: 18%; right: 12%;">
+        <svg width="90" height="90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="80" height="80" rx="15" fill="rgba(220,220,200,0.8)" stroke="rgba(150,150,150,0.5)" stroke-width="3"/>
+            <circle cx="30" cy="30" r="7" fill="#1a4a4f"/>
+            <circle cx="70" cy="30" r="7" fill="#1a4a4f"/>
+            <circle cx="30" cy="70" r="7" fill="#1a4a4f"/>
+            <circle cx="70" cy="70" r="7" fill="#1a4a4f"/>
+            <circle cx="50" cy="50" r="7" fill="#1a4a4f"/>
+        </svg>
+    </div>
+    <div class="floating-dice" style="bottom: 22%; left: 6%;">
+        <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="80" height="80" rx="15" fill="rgba(180,200,180,0.8)" stroke="rgba(150,150,150,0.5)" stroke-width="3"/>
+            <circle cx="30" cy="30" r="8" fill="#1a4a4f"/>
+            <circle cx="70" cy="30" r="8" fill="#1a4a4f"/>
+            <circle cx="30" cy="70" r="8" fill="#1a4a4f"/>
+            <circle cx="70" cy="70" r="8" fill="#1a4a4f"/>
+        </svg>
+    </div>
+    <div class="floating-dice" style="bottom: 25%; right: 8%;">
+        <svg width="85" height="85" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="80" height="80" rx="15" fill="rgba(200,220,200,0.8)" stroke="rgba(150,150,150,0.5)" stroke-width="3"/>
+            <circle cx="30" cy="30" r="7" fill="#1a4a4f"/>
+            <circle cx="70" cy="30" r="7" fill="#1a4a4f"/>
+            <circle cx="30" cy="50" r="7" fill="#1a4a4f"/>
+            <circle cx="70" cy="50" r="7" fill="#1a4a4f"/>
+            <circle cx="30" cy="70" r="7" fill="#1a4a4f"/>
+            <circle cx="70" cy="70" r="7" fill="#1a4a4f"/>
+        </svg>
+    </div>
+    
+    <!-- Main Hero Content -->
+    <div class="hero-content">
+        <h1 class="hero-title">ROLLQUEST</h1>
+        <div class="hero-title-underline"></div>
+        <p class="hero-subtitle">A Stochastic Game Simulation</p>
+        
+        <a href="{{ url_for('game.game') }}" class="btn-start-game">
+            <i class="bi bi-play-circle-fill"></i>
+            START GAME
+        </a>
+    </div>
+</section>
+{% endblock %}
