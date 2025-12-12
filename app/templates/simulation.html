@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}Monte Carlo Simulation{% endblock %}
+
+{% block content %}
+<div class="simulation-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h1 class="title-font text-teal">
+                    <i class="bi bi-graph-up-arrow me-2"></i>Monte Carlo Simulation
+                </h1>
+                <p class="text-muted">Run large-scale simulations to analyze dice game outcomes</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- Simulation Controls -->
+            <div class="col-lg-4 mb-4">
+                <div class="simulation-controls">
+                    <h5 class="text-teal mb-4"><i class="bi bi-sliders me-2"></i>Simulation Parameters</h5>
+                    
+                    <!-- Number of Trials -->
+                    <div class="mb-3">
+                        <label class="form-label-custom">Number of Trials</label>
+                        <select id="numTrials" class="form-select form-control-custom">
+                            <option value="100">100 trials</option>
+                            <option value="1000">1,000 trials</option>
+                            <option value="10000" selected>10,000 trials</option>
+                            <option value="50000">50,000 trials</option>
+                            <option value="100000">100,000 trials</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Starting Balance -->
+                    <div class="mb-3">
+                        <label class="form-label-custom">Starting Balance ($)</label>
+                        <input type="number" id="startingBalance" class="form-control form-control-custom" 
+                               value="1000" min="10" max="100000">
+                    </div>
+                    
+                    <!-- Bet Amount -->
+                    <div class="mb-3">
+                        <label class="form-label-custom">Bet Amount ($)</label>
+                        <input type="number" id="simBetAmount" class="form-control form-control-custom" 
+                               value="10" min="1" max="1000">
+                    </div>
+                    
+                    <!-- Betting Strategy -->
+                    <div class="mb-3">
+                        <label class="form-label-custom">Betting Strategy</label>
+                        <select id="betStrategy" class="form-select form-control-custom">
+                            <option value="fixed">Fixed Bet</option>
+                            <option value="martingale">Martingale (Double on Loss)</option>
+                            <option value="anti_martingale">Anti-Martingale (Double on Win)</option>
+                            <option value="kelly">Kelly Criterion</option>
+                        </select>
+                        <small class="text-muted d-block mt-1" id="strategyDescription">
+                            Bet the same amount every round.
+                        </small>
+                    </div>
+                    
+                    <!-- Game Mode -->
+                    <div class="mb-3">
+                        <label class="form-label-custom">Game Mode</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="simGameMode" 
+                                   id="simModeFair" value="fair" checked>
+                            <label class="form-check-label" for="simModeFair">Fair (16.67% each)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="simGameMode" 
+                                   id="simModeTweaked" value="tweaked">
+                            <label class="form-check-label" for="simModeTweaked">Tweaked</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Tweaked Probabilities (hidden by default) -->
+                    <div id="simProbSliders" style="display: none;" class="mb-3">
+                        <small class="text-muted mb-2 d-block">Adjust probabilities:</small>
+                        {% for face in range(1, 7) %}
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span><i class="bi bi-dice-{{ face }}-fill text-teal"></i> Face {{ face }}</span>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range form-range-custom sim-prob-slider" 
+                                       id="simProb{{ face }}" data-face="{{ face }}"
+                                       min="0" max="50" value="16.67" step="0.1" style="width: 100px;">
+                                <span class="ms-2 sim-prob-value" id="simProbValue{{ face }}" style="min-width: 50px;">16.67%</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Target Face -->
+                    <div class="mb-4">
+                        <label class="form-label-custom">Target Face to Bet On</label>
+                        <select id="targetFace" class="form-select form-control-custom">
+                            <option value="">Random (varies each round)</option>
+                            <option value="1">Always bet on 1</option>
+                            <option value="2">Always bet on 2</option>
+                            <option value="3">Always bet on 3</option>
+                            <option value="4">Always bet on 4</option>
+                            <option value="5">Always bet on 5</option>
+                            <option value="6">Always bet on 6</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Run Buttons -->
+                    <button class="btn btn-primary-custom w-100 mb-2" onclick="runSimulation()">
+                        <i class="bi bi-play-fill me-2"></i>Run Single Simulation
+                    </button>
+                    <button class="btn btn-outline-custom w-100 mb-2" onclick="runBatchSimulation()">
+                        <i class="bi bi-collection-play me-2"></i>Run Batch Simulation (100x)
+                    </button>
+                    <button class="btn btn-outline-custom w-100" onclick="runConvergenceAnalysis()">
+                        <i class="bi bi-graph-up me-2"></i>Convergence Analysis
+                    </button>
+                </div>
+                
+                <!-- Theoretical Info -->
+                <div class="game-card mt-3">
+                    <h6 class="text-teal"><i class="bi bi-calculator me-2"></i>Theoretical Values</h6>
+                    <div class="small">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Win Probability:</span>
+                            <span id="theoreticalWinProb">16.67%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>Expected Value/Bet:</span>
+                            <span id="theoreticalEV">$0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>House Edge:</span>
+                            <span id="theoreticalHouseEdge">0.00%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results Panel -->
+            <div class="col-lg-8">
+                <!-- Loading Indicator -->
+                <div id="simLoading" style="display: none;" class="text-center py-5">
+                    <div class="spinner mx-auto mb-3"></div>
+                    <p class="text-muted">Running simulation...</p>
+                </div>
+                
+                <!-- Results Container -->
+                <div id="simResults">
+                    <!-- Placeholder -->
+                    <div class="game-card text-center py-5">
+                        <i class="bi bi-bar-chart-line display-1 text-muted mb-3"></i>
+                        <h5 class="text-muted">No Simulation Results Yet</h5>
+                        <p class="text-muted small">Configure parameters and run a simulation to see results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
+{% endblock %}
