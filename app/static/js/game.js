@@ -124,27 +124,30 @@ async function rollDice() {
         ? gameState.probabilities.map(p => p / 100)
         : null;
     
-    window.DiceAnimation.roll(async () => {
-        try {
-            const response = await fetch('/game/roll', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    bet_face: gameState.selectedFace,
-                    bet_amount: betAmount,
-                    probabilities: probabilities
-                })
-            });
-            
-            const data = await response.json();
-            
-            if (response.ok) {
-                window.DiceAnimation.update(data.result, data.won);
+    // First, make the API call to get the result
+    try {
+        const response = await fetch('/game/roll', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                bet_face: gameState.selectedFace,
+                bet_amount: betAmount,
+                probabilities: probabilities
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Now animate the 3D dice to the actual result
+            window.DiceAnimation.roll(data.result, () => {
+                // Show win/loss effect after dice lands
+                window.DiceAnimation.showResult(data.won);
                 
                 resultIndicator.className = `result-indicator ${data.won ? 'win' : 'loss'}`;
-                resultIndicator.textContent = data.won ? '🎉 WIN!' : '😢 LOSS';
+                resultIndicator.textContent = data.won ? 'WIN!' : 'LOSS';
                 resultIndicator.style.display = 'inline-block';
                 
                 updateGameStats(data);
@@ -156,20 +159,23 @@ async function rollDice() {
                     won: data.won
                 });
                 
-            } else {
-                showToast(data.error || 'An error occurred', 'error');
-                window.DiceAnimation.init();
-            }
-            
-        } catch (error) {
-            console.error('Roll error:', error);
-            showToast('Failed to roll dice. Please try again.', 'error');
-            window.DiceAnimation.init();
+                gameState.isRolling = false;
+                rollBtn.disabled = false;
+            });
+        } else {
+            showToast(data.error || 'An error occurred', 'error');
+            window.DiceAnimation.reset();
+            gameState.isRolling = false;
+            rollBtn.disabled = false;
         }
         
+    } catch (error) {
+        console.error('Roll error:', error);
+        showToast('Failed to roll dice. Please try again.', 'error');
+        window.DiceAnimation.reset();
         gameState.isRolling = false;
         rollBtn.disabled = false;
-    });
+    }
 }
 
 function updateGameStats(data) {

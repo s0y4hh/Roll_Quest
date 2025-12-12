@@ -95,11 +95,7 @@
             <!-- Dice Animation Panel -->
             <div class="dice-panel">
                 <div id="diceResult" class="dice-result-display">
-                    <div class="dice-3d" id="dice3D">
-                        <div class="dice-face-3d" id="diceResultFace">
-                            <span class="dice-number">?</span>
-                        </div>
-                    </div>
+                    <!-- 3D Dice will be injected here by dice.js -->
                 </div>
                 <div id="resultIndicator" class="result-indicator" style="display: none;"></div>
             </div>
@@ -119,18 +115,19 @@
                 </div>
                 
                 <div class="bet-controls">
-                    <div class="bet-amount-group">
-                        <label class="form-label-custom">Bet Amount</label>
-                        <div class="input-group">
-                            <span class="input-group-text" style="background: var(--card-bg); border-color: var(--card-border); color: var(--text-light);">$</span>
-                            <input type="number" id="betAmount" class="form-control form-control-custom" 
-                                   value="10" min="1" max="10000">
+                    <div class="bet-input-row">
+                        <div class="bet-amount-group">
+                            <label class="form-label-custom">Bet Amount</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="background: var(--card-bg); border-color: var(--card-border); color: var(--text-light);">$</span>
+                                <input type="number" id="betAmount" class="form-control form-control-custom" 
+                                       value="10" min="1" max="10000">
+                            </div>
                         </div>
+                        <button class="btn-roll" id="rollBtn" onclick="rollDice()">
+                            <i class="bi bi-dice-5-fill me-2"></i> ROLL
+                        </button>
                     </div>
-                    
-                    <button class="btn-roll" id="rollBtn" onclick="rollDice()">
-                        <i class="bi bi-dice-5-fill me-2"></i> ROLL
-                    </button>
                 </div>
                 
                 <div class="text-center mt-3">
