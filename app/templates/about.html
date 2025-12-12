@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="about-page">
+    <div class="container">
+        <!-- Header -->
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="title-font text-teal">
+                    <i class="bi bi-info-circle-fill me-2"></i>About RollQuest
+                </h1>
+                <p class="text-muted">A Stochastic Dice Game Simulation for Academic Study</p>
+            </div>
+        </div>
+        
+        <!-- Project Overview -->
+        <div class="about-section">
+            <h2><i class="bi bi-journal-text"></i>Project Overview</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p>
+                        <strong>RollQuest</strong> is an interactive web-based simulation designed to demonstrate 
+                        fundamental concepts in <strong>Modeling and Simulation</strong>. The project uses a simple 
+                        dice betting game as a vehicle to explore probability theory, stochastic processes, 
+                        and statistical analysis.
+                    </p>
+                    <p>
+                        The simulation allows users to experience the difference between a <em>fair game</em> 
+                        (where each dice face has equal probability) and a <em>tweaked game</em> (where probabilities 
+                        can be customized), providing hands-on understanding of how probability distributions 
+                        affect outcomes over time.
+                    </p>
+                    <h5 class="text-teal mt-4 mb-3">Key Features</h5>
+                    <ul>
+                        <li><strong>Interactive Dice Game</strong> - Real-time betting with animated dice rolls</li>
+                        <li><strong>Fair & Tweaked Modes</strong> - Compare uniform vs. custom probability distributions</li>
+                        <li><strong>Monte Carlo Simulation</strong> - Run thousands of trials to analyze outcomes</li>
+                        <li><strong>Statistical Analysis</strong> - Chi-square tests, convergence analysis, and more</li>
+                        <li><strong>Multiple Betting Strategies</strong> - Fixed, Martingale, Anti-Martingale, Kelly Criterion</li>
+                        <li><strong>Data Export</strong> - Export results for further analysis</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="game-card">
+                        <h6 class="text-teal mb-3"><i class="bi bi-gear-fill me-2"></i>Technologies Used</h6>
+                        <ul class="list-unstyled small">
+                            <li class="mb-2"><i class="bi bi-check-circle text-teal me-2"></i>Python Flask</li>
+                            <li class="mb-2"><i class="bi bi-check-circle text-teal me-2"></i>NumPy & SciPy</li>
+                            <li class="mb-2"><i class="bi bi-check-circle text-teal me-2"></i>Plotly.js</li>
+                            <li class="mb-2"><i class="bi bi-check-circle text-teal me-2"></i>Bootstrap 5</li>
+                            <li class="mb-2"><i class="bi bi-check-circle text-teal me-2"></i>HTML5 / CSS3 / JS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Theoretical Comparison -->
+        <div class="about-section">
+            <h2><i class="bi bi-calculator"></i>Theoretical Comparison: Fair vs. Tweaked</h2>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="game-card h-100">
+                        <h5 class="text-teal mb-3">
+                            <i class="bi bi-dice-6-fill me-2"></i>Fair Game
+                        </h5>
+                        <p>In a fair dice game, each face has an equal probability of appearing:</p>
+                        <div class="formula-box">
+                            P(Face = i) = 1/6 ≈ 16.67% for i ∈ {1, 2, 3, 4, 5, 6}
+                        </div>
+                        
+                        <h6 class="mt-4">Expected Value of Dice Roll</h6>
+                        <div class="formula-box">
+                            E[X] = Σ(i × P(i)) = (1+2+3+4+5+6)/6 = 3.5
+                        </div>
+                        
+                        <h6 class="mt-3">Variance</h6>
+                        <div class="formula-box">
+                            Var(X) = E[X²] - (E[X])² = 35/12 ≈ 2.917
+                        </div>
+                        
+                        <h6 class="mt-3">Expected Value per Bet (6x payout)</h6>
+                        <div class="formula-box">
+                            E[Profit] = (1/6 × 6 - 1) × Bet = 0
+                        </div>
+                        <p class="small text-muted mt-2">
+                            A fair game with 6x payout is mathematically break-even in the long run.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="game-card h-100">
+                        <h5 class="text-danger mb-3">
+                            <i class="bi bi-sliders me-2"></i>Tweaked Game
+                        </h5>
+                        <p>In a tweaked game, probabilities are customized:</p>
+                        <div class="formula-box">
+                            P = [p₁, p₂, p₃, p₄, p₅, p₆] where Σpᵢ = 1
+                        </div>
+                        
+                        <h6 class="mt-4">Example: Biased Against Face 1</h6>
+                        <div class="formula-box">
+                            P(1) = 10%, P(2-6) = 18% each
+                        </div>
+                        
+                        <h6 class="mt-3">House Edge Calculation</h6>
+                        <div class="formula-box">
+                            House Edge = (1 - P(win) × Payout) × 100%
+                        </div>
+                        <p class="small mb-2">If player always bets on Face 1:</p>
+                        <div class="formula-box">
+                            House Edge = (1 - 0.10 × 6) × 100% = 40%
+                        </div>
+                        
+                        <h6 class="mt-3">Expected Loss per $10 Bet</h6>
+                        <div class="formula-box">
+                            E[Loss] = (0.10 × 60 - 10) = -$4.00
+                        </div>
+                        <p class="small text-danger mt-2">
+                            A seemingly small probability change creates massive player disadvantage!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comparison Table -->
+            <div class="game-card mt-4">
+                <h5 class="text-teal mb-3"><i class="bi bi-table me-2"></i>Side-by-Side Comparison</h5>
+                <div class="table-responsive">
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th class="text-center">Fair Game</th>
+                                <th class="text-center">Tweaked (10% on target)</th>
+                                <th class="text-center">Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Win Probability</td>
+                                <td class="text-center">16.67%</td>
+                                <td class="text-center">10.00%</td>
+                                <td class="text-center text-danger">-40% relative</td>
+                            </tr>
+                            <tr>
+                                <td>Expected Value/Bet ($10)</td>
+                                <td class="text-center">$0.00</td>
+                                <td class="text-center">-$4.00</td>
+                                <td class="text-center text-danger">Player loses $4/bet</td>
+                            </tr>
+                            <tr>
+                                <td>House Edge</td>
+                                <td class="text-center">0%</td>
+                                <td class="text-center">40%</td>
+                                <td class="text-center text-danger">Massive disadvantage</td>
+                            </tr>
+                            <tr>
+                                <td>100 Bets Expected Loss</td>
+                                <td class="text-center">$0</td>
+                                <td class="text-center">-$400</td>
+                                <td class="text-center text-danger">Bankruptcy likely</td>
+                            </tr>
+                            <tr>
+                                <td>Long-term Outcome</td>
+                                <td class="text-center text-success-custom">Break-even</td>
+                                <td class="text-center text-danger">Certain loss</td>
+                                <td class="text-center">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Academic Concepts -->
+        <div class="about-section">
+            <h2><i class="bi bi-mortarboard"></i>Academic Concepts Demonstrated</h2>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="game-card h-100">
+                        <h6 class="text-teal"><i class="bi bi-shuffle me-2"></i>Stochastic Processes</h6>
+                        <p class="small">
+                            Each dice roll is an independent random variable. The sequence of rolls 
+                            forms a stochastic process, demonstrating how randomness behaves over time.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="game-card h-100">
+                        <h6 class="text-teal"><i class="bi bi-graph-up me-2"></i>Law of Large Numbers</h6>
+                        <p class="small">
+                            As the number of trials increases, the empirical probability converges 
+                            to the theoretical probability. Our convergence analysis visualizes this principle.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="game-card h-100">
+                        <h6 class="text-teal"><i class="bi bi-bell me-2"></i>Central Limit Theorem</h6>
+                        <p class="small">
+                            The distribution of sample means approaches a normal distribution as 
+                            sample size increases, regardless of the underlying distribution.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="game-card h-100">
+                        <h6 class="text-teal"><i class="bi bi-cpu me-2"></i>Monte Carlo Methods</h6>
+                        <p class="small">
+                            Using random sampling to obtain numerical results. Our simulation runs 
+                            thousands of trials to estimate probabilities and expected values.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="game-card h-100">
+                        <h6 class="text-teal"><i class="bi bi-wallet2 me-2"></i>Gambler's Ruin Problem</h6>
+                        <p class="small">
+                            The probability of going bankrupt when playing repeatedly. Our batch 
+                            simulations calculate ruin probability under different conditions.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="game-card h-100">
+                        <h6 class="text-teal"><i class="bi bi-clipboard-data me-2"></i>Statistical Testing</h6>
+                        <p class="small">
+                            Chi-square goodness-of-fit tests verify if observed outcomes match 
+                            expected distributions, detecting potential biases.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Section -->
+        <div class="about-section">
+            <h2><i class="bi bi-people-fill"></i>Development Team</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="team-member">
+                        <div class="team-member-avatar">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <h5>ASIADO</h5>
+                        <p class="text-teal small mb-0">Developer</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="team-member">
+                        <div class="team-member-avatar">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <h5>VALLE</h5>
+                        <p class="text-teal small mb-0">Developer</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="team-member">
+                        <div class="team-member-avatar">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <h5>MEDIADO</h5>
+                        <p class="text-teal small mb-0">Developer</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <div class="game-card d-inline-block px-5 py-3">
+                    <h5 class="text-teal mb-2">CSEC 413 - Modeling and Simulation</h5>
+                    <p class="mb-0">Bachelor of Science in Computer Science 4A</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- References -->
+        <div class="about-section">
+            <h2><i class="bi bi-book"></i>References & Further Reading</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h6 class="text-teal mb-3">Probability & Statistics</h6>
+                    <ul class="small">
+                        <li>Ross, S. M. (2014). <em>Introduction to Probability Models</em></li>
+                        <li>DeGroot, M. H. (2012). <em>Probability and Statistics</em></li>
+                        <li>Casella, G. & Berger, R. (2002). <em>Statistical Inference</em></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h6 class="text-teal mb-3">Simulation & Monte Carlo</h6>
+                    <ul class="small">
+                        <li>Law, A. M. (2015). <em>Simulation Modeling and Analysis</em></li>
+                        <li>Rubinstein, R. Y. (2016). <em>Simulation and the Monte Carlo Method</em></li>
+                        <li>Banks, J. (2010). <em>Discrete-Event System Simulation</em></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
