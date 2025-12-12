@@ -1,0 +1,20 @@
+# RollQuest Robots.txt
+# https://rollquest.games
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://rollquest.games/static/sitemap.xml
+
+# Disallow session and API endpoints
+Disallow: /game/roll
+Disallow: /game/reset
+Disallow: /game/add-funds
+Disallow: /simulation/run
+Disallow: /simulation/batch
+Disallow: /simulation/convergence
+Disallow: /analysis/chi-square
+Disallow: /analysis/compare-modes
+Disallow: /analysis/session-stats
+Disallow: /analysis/export

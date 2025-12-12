@@ -3,7 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}RollQuest{% endblock %} - Stochastic Dice Game</title>
+    <title>{% block title %}RollQuest{% endblock %} - Stochastic Dice Game Simulation</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block meta_description %}RollQuest - An interactive stochastic dice game simulation for learning probability theory, Monte Carlo methods, and statistical analysis. Play, simulate, and analyze dice betting strategies.{% endblock %}">
+    <meta name="keywords" content="dice game, probability simulation, Monte Carlo simulation, stochastic process, betting strategies, chi-square test, gambler's ruin, statistics, probability theory, RollQuest, roll quest, dice simulator">
+    <meta name="author" content="ASIADO, VALLE, MEDIADO - CSEC 413">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rollquest.games{{ request.path }}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rollquest.games{{ request.path }}">
+    <meta property="og:title" content="{% block og_title %}RollQuest - Stochastic Dice Game Simulation{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Interactive dice game simulation for learning probability theory, Monte Carlo methods, and statistical analysis.{% endblock %}">
+    <meta property="og:image" content="https://rollquest.games/static/images/og-image.png">
+    <meta property="og:site_name" content="RollQuest">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://rollquest.games{{ request.path }}">
+    <meta name="twitter:title" content="RollQuest - Stochastic Dice Game Simulation">
+    <meta name="twitter:description" content="Interactive dice game simulation for learning probability, Monte Carlo methods, and statistics.">
+    <meta name="twitter:image" content="https://rollquest.games/static/images/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "RollQuest",
+        "description": "An interactive stochastic dice game simulation for learning probability theory, Monte Carlo methods, and statistical analysis.",
+        "url": "https://rollquest.games",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "CSEC 413 - Modeling and Simulation Team",
+            "member": ["ASIADO", "VALLE", "MEDIADO"]
+        },
+        "educationalUse": ["Simulation", "Learning", "Research"],
+        "keywords": "dice game, probability, Monte Carlo, simulation, statistics, betting strategies"
+    }
+    </script>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">

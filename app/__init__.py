@@ -2,7 +2,7 @@
 RollQuest Flask Application Factory
 """
 
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_session import Session
 import os
 
@@ -16,6 +16,15 @@ def create_app():
     
     # Initialize extensions
     Session(app)
+    
+    # SEO routes - serve robots.txt and sitemap.xml from root
+    @app.route('/robots.txt')
+    def robots():
+        return send_from_directory(app.static_folder, 'robots.txt')
+    
+    @app.route('/sitemap.xml')
+    def sitemap():
+        return send_from_directory(app.static_folder, 'sitemap.xml', mimetype='application/xml')
     
     # Register blueprints
     from app.routes.home import home_bp
