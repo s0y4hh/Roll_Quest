@@ -634,37 +634,28 @@ where:
       <sub>Lead Developer</sub>
     </td>
     <td align="center">
-      <a href="https://github.com/member2">
-        <img src="https://github.com/member2.png" width="100px;" alt="Member 2" style="border-radius: 50%;"/>
+      <a href="https://github.com/niwiisaaa">
+        <img src="https://github.com/niwiisaaa.png" width="100px;" alt="niwiisaaa" style="border-radius: 50%;"/>
         <br />
-        <sub><b>Member 2</b></sub>
+        <sub><b>niwiisaaa</b></sub>
       </a>
       <br />
-      <sub>Developer</sub>
+      <sub>Technical Writer</sub>
     </td>
     <td align="center">
-      <a href="https://github.com/member3">
-        <img src="https://github.com/member3.png" width="100px;" alt="Member 3" style="border-radius: 50%;"/>
+      <a href="https://github.com/hycinthe">
+        <img src="https://github.com/hycinthe.png" width="100px;" alt="hycinthe" style="border-radius: 50%;"/>
         <br />
-        <sub><b>Member 3</b></sub>
+        <sub><b>hycinthe</b></sub>
       </a>
       <br />
-      <sub>Developer</sub>
-    </td>
-    <td align="center">
-      <a href="https://github.com/member4">
-        <img src="https://github.com/member4.png" width="100px;" alt="Member 4" style="border-radius: 50%;"/>
-        <br />
-        <sub><b>Member 4</b></sub>
-      </a>
-      <br />
-      <sub>Developer</sub>
+      <sub>Technical Writer</sub>
     </td>
   </tr>
 </table>
 
 **Course**: CSEC 413 - Modeling and Simulation  
-**Institution**: [Your University Name]  
+**Institution**: CAMARINES SUR POLYTECHNIC COLLEGES  
 **Academic Year**: 2024-2025
 
 ---
@@ -710,7 +701,7 @@ SOFTWARE.
 ---
 
 <p align="center">
-  Made with love for CSEC 413 - Modeling and Simulation
+  Made for CSEC 413 - Modeling and Simulation final project requirement
 </p>
 
 <p align="center">
