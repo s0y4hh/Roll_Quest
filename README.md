@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/images/rollquest-banner.png" alt="RollQuest Banner" width="100%">
+  <img src="docs/images/banner.png" alt="RollQuest Banner" width="100%">
 </p>
 
-<h1 align="center">RollQuest</h1>
+<!-- <h1 align="center">RollQuest</h1> -->
 
 <p align="center">
   <strong>A Stochastic Dice Game Simulation for Probability & Monte Carlo Analysis</strong>
@@ -112,7 +112,7 @@ The main game interface with 3D dice, betting controls, and real-time statistics
 <!-- Suggested filename: docs/images/screenshot-game.png -->
 <!-- Capture: Game page showing dice, bet controls, and stats panel -->
 <p align="center">
-  <img src="docs/images/screenshot-game.png" alt="Game Page" width="90%">
+  <img src="docs/images/game page.png" alt="Game Page" width="90%">
   <br>
   <em>Interactive Dice Game - Place bets and roll the 3D animated dice</em>
 </p>
@@ -140,7 +140,7 @@ Configure simulation parameters and run thousands of trials to analyze outcomes.
 <!-- Suggested filename: docs/images/screenshot-simulation.png -->
 <!-- Capture: Simulation page showing parameters panel and result charts -->
 <p align="center">
-  <img src="docs/images/screenshot-simulation.png" alt="Monte Carlo Simulation" width="90%">
+  <img src="docs/images/simulation.png" alt="Monte Carlo Simulation" width="90%">
   <br>
   <em>Monte Carlo Simulation - Run up to 1 million trials with various betting strategies</em>
 </p>
@@ -168,7 +168,7 @@ Comprehensive analysis dashboard with Chi-square tests and distribution comparis
 <!-- Suggested filename: docs/images/screenshot-analysis.png -->
 <!-- Capture: Analysis page with Chi-square test results and face distribution chart -->
 <p align="center">
-  <img src="docs/images/screenshot-analysis.png" alt="Statistical Analysis" width="90%">
+  <img src="docs/images/statistics.png" alt="Statistical Analysis" width="90%">
   <br>
   <em>Statistical Analysis - Chi-square tests and face distribution comparison</em>
 </p>
@@ -182,7 +182,7 @@ Bar chart comparing observed frequencies against expected theoretical values.
 <!-- Suggested filename: docs/images/screenshot-distribution.png -->
 <!-- Capture: Close-up of the Plotly face distribution bar chart -->
 <p align="center">
-  <img src="docs/images/screenshot-distribution.png" alt="Face Distribution" width="80%">
+  <img src="docs/images/face distribution.png" alt="Face Distribution" width="80%">
   <br>
   <em>Face Distribution Analysis - Observed vs Expected frequencies</em>
 </p>
@@ -196,7 +196,7 @@ Project information, theoretical background, and team member profiles.
 <!-- Suggested filename: docs/images/screenshot-about.png -->
 <!-- Capture: About page showing project overview and team section -->
 <p align="center">
-  <img src="docs/images/screenshot-about.png" alt="About Page" width="90%">
+  <img src="docs/images/about.png" alt="About Page" width="90%">
   <br>
   <em>About Page - Project documentation and team profiles</em>
 </p>
@@ -210,7 +210,7 @@ Meet the developers with GitHub profile integration.
 <!-- Suggested filename: docs/images/screenshot-team.png -->
 <!-- Capture: Team member cards with circular avatar frames -->
 <p align="center">
-  <img src="docs/images/screenshot-team.png" alt="Team Section" width="80%">
+  <img src="docs/images/developer.png" alt="Team Section" width="80%">
   <br>
   <em>Development Team - Circular avatar frames with GitHub integration</em>
 </p>
