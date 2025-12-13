@@ -154,7 +154,7 @@ Detailed results showing win rate, profit distribution, and convergence analysis
 <!-- Suggested filename: docs/images/screenshot-simulation-results.png -->
 <!-- Capture: Results panel with charts after running simulation -->
 <p align="center">
-  <img src="docs/images/screenshot-simulation-results.png" alt="Simulation Results" width="90%">
+  <img src="docs/images/other simulation.png" alt="Simulation Results" width="90%">
   <br>
   <em>Simulation Results - Win rate convergence and profit distribution charts</em>
 </p>
@@ -199,20 +199,6 @@ Project information, theoretical background, and team member profiles.
   <img src="docs/images/about.png" alt="About Page" width="90%">
   <br>
   <em>About Page - Project documentation and team profiles</em>
-</p>
-
----
-
-### Team Section
-Meet the developers with GitHub profile integration.
-
-<!-- PLACEHOLDER: Add screenshot of team section -->
-<!-- Suggested filename: docs/images/screenshot-team.png -->
-<!-- Capture: Team member cards with circular avatar frames -->
-<p align="center">
-  <img src="docs/images/developer.png" alt="Team Section" width="80%">
-  <br>
-  <em>Development Team - Circular avatar frames with GitHub integration</em>
 </p>
 
 ---
