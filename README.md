@@ -126,7 +126,7 @@ Close-up of the 3D CSS dice with smooth 60fps rotation animation.
 <!-- Suggested filename: docs/images/screenshot-dice-roll.gif -->
 <!-- Capture: GIF of dice rolling animation (use screen recorder) -->
 <p align="center">
-  <img src="docs/images/screenshot-dice-roll.gif" alt="Dice Roll Animation" width="400">
+  <img src="docs/images/dice.png" alt="Dice Roll Animation" width="400">
   <br>
   <em>3D Dice with realistic rolling animation and sound effects</em>
 </p>
@@ -140,7 +140,7 @@ Configure simulation parameters and run thousands of trials to analyze outcomes.
 <!-- Suggested filename: docs/images/screenshot-simulation.png -->
 <!-- Capture: Simulation page showing parameters panel and result charts -->
 <p align="center">
-  <img src="docs/images/simulation.png" alt="Monte Carlo Simulation" width="90%">
+  <img src="docs/images/other simulation.png" alt="Monte Carlo Simulation" width="90%">
   <br>
   <em>Monte Carlo Simulation - Run up to 1 million trials with various betting strategies</em>
 </p>
@@ -154,7 +154,7 @@ Detailed results showing win rate, profit distribution, and convergence analysis
 <!-- Suggested filename: docs/images/screenshot-simulation-results.png -->
 <!-- Capture: Results panel with charts after running simulation -->
 <p align="center">
-  <img src="docs/images/other simulation.png" alt="Simulation Results" width="90%">
+  <img src="docs/images/simulation.png" alt="Simulation Results" width="90%">
   <br>
   <em>Simulation Results - Win rate convergence and profit distribution charts</em>
 </p>
