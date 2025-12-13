@@ -664,7 +664,7 @@ where:
 </table>
 
 **Course**: CSEC 413 - Modeling and Simulation  
-**Institution**: [Your University Name]  
+**Institution**: CAMARINES SUR POLYTECHNIC COLLEGES  
 **Academic Year**: 2024-2025
 
 ---
@@ -710,7 +710,7 @@ SOFTWARE.
 ---
 
 <p align="center">
-  Made with love for CSEC 413 - Modeling and Simulation
+  Made for CSEC 413 - Modeling and Simulation final project requirement
 </p>
 
 <p align="center">
